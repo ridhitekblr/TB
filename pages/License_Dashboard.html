@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+     <title>TB Patient Monitoring Dashboard</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="/dist/assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="/dist/assets/vendors/ti-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="/dist/assets/vendors/css/vendor.bundle.base.css">
+    
+    
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="/dist/assets/vendors/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/dist/assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="/dist/assets/css/style.css">
+    <!-- End layout styles -->
+    <!-- <link rel="shortcut icon" href="assets/images/favicon.png" /> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
+    <link rel="stylesheet" href="/welcome/assets/css/style.css">
+    <link href="https://demo.dashboardpack.com/architectui-html-free/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/Header/Header.css">
+  </head>
+  <body>
+
+  
+    <div class="container-scroller">
+      <div class="headerMain" style="position: relative; z-index:100;">
+        <nav>
+          <div class="logo">
+            <a href="/pages/TB_Patient_Monitoring_Dashboard.html" style="text-decoration: none;">TB Patient Monitoring Dashboard</a>
+          </div>
+          <input type="checkbox" id="menu-toggle">
+          <label for="menu-toggle" class="menu-icon">☰</label>
+          <ul class="menu">
+            <li><a href="/index.html" style="text-decoration: none;">Home</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="container-fluid" style="padding-inline: 0px !important;">
+        <div class="main-panel">
+          <div class="content-wrapper">
+            <div class="page-header">
+              <h3 class="page-title">
+                <span class="page-title-icon bg-gradient-primary text-white me-2">
+                  <i class="mdi mdi-home"></i>
+                </span> Telangana TB Reports
+              </h3>
+              <nav aria-label="breadcrumb">
+                <ul class="breadcrumb">
+                  <li class="breadcrumb-item active" aria-current="page">
+                    <!-- <span></span>Overview <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i> -->
+                  </li>
+                </ul>
+              </nav>
+            </div>
+            <div class="row">
+              <div class="col-md-4 stretch-card grid-margin">
+                <div class="card bg-gradient-primary card-img-holder text-white">
+                  <div class="card-body">
+                    <h4 class="font-weight-normal mb-3">Program Summary<i class="fa-solid fa-stethoscope mdi-24px float-end"></i>
+                    </h4>
+                    <ul>
+                      <li>Patients Registered: <span>1,24,531</span></li>
+                      <li>Under Treatment: <span>51,208</span></li>
+                      <li>Completed Treatment: <span>89,403</span></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 stretch-card grid-margin">
+                <div class="card bg-gradient-success card-img-holder text-white">
+                  <div class="card-body">
+                    <h4 class="font-weight-normal mb-3">Diagnostics Summary<i class="fa-solid fa-vial mdi-24px float-end"></i>
+                    </h4>
+                    <ul>
+                      <li>Sputum Tests: <span>95,000</span></li>
+                      <li>CB-NAAT Tests: <span>35,000</span></li>
+                      <li>X-rays: <span>28,000</span></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 stretch-card grid-margin">
+                <div class="card bg-gradient-secondary card-img-holder text-white">
+                  <div class="card-body">
+                    <h4 class="font-weight-normal mb-3">Monitoring Activity<i class="fa-solid fa-chart-line mdi-24px float-end"></i>
+                    </h4>
+                    <ul>
+                      <li>Field Visits: <span>18,900</span></li>
+                      <li>Escalations: <span>762</span></li>
+                      <li>Teleconsultations: <span>9,890</span></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-7 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="clearfix">
+                      <h4 class="card-title float-start">Monthly New TB Case Registration</h4>
+                      <div id="visit-sale-chart-legend" class="rounded-legend legend-horizontal legend-top-right float-end"></div>
+                    </div>
+                    <canvas id="visit-sale-chart" class="mt-4"></canvas>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-5 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Treatment Status Distribution</h4>
+                    <div class="doughnutjs-wrapper d-flex justify-content-center">
+                      <canvas id="traffic-chart"></canvas>
+                    </div>
+                    <div id="traffic-chart-legend" class="rounded-legend legend-vertical legend-bottom-left pt-4"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12 grid-margin">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Recent Patient Records</h4>
+                    <div class="table-responsive">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th> District </th>
+                            <th> Patients Registered </th>
+                            <th> Treatment Status </th>
+                            <th> Last Follow-up </th>
+                            <th> Patient ID </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                              <img src="https://static.toiimg.com/thumb/msid-96001678,width-748,height-499,resizemode=4,imgsize-107872/.jpg" class="me-2" alt="image"> Hyderabad
+                            </td>
+                            <td>10,000</td>
+                            <td>
+                              <label class="badge badge-gradient-success">ACTIVE</label>
+                            </td>
+                            <td> May 5, 2024 </td>
+                            <td> TB-12345 </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <img src="https://static.toiimg.com/thumb/msid-96001678,width-748,height-499,resizemode=4,imgsize-107872/.jpg" class="me-2" alt="image"> Karimnagar
+                            </td>
+                            <td>8,500</td>
+                            <td>
+                              <label class="badge badge-gradient-primary">COMPLETED</label>
+                            </td>
+                            <td> Apr 21, 2024 </td>
+                            <td> TB-12346 </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <img src="https://static.toiimg.com/thumb/msid-96001678,width-748,height-499,resizemode=4,imgsize-107872/.jpg" class="me-2" alt="image"> Warangal
+                            </td>
+                            <td>7,200</td>
+                            <td>
+                              <label class="badge badge-gradient-warning">DROPPED OUT</label>
+                            </td>
+                            <td> Mar 15, 2024 </td>
+                            <td> TB-12347 </td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <img src="https://static.toiimg.com/thumb/msid-96001678,width-748,height-499,resizemode=4,imgsize-107872/.jpg" class="me-2" alt="image"> Khammam
+                            </td>
+                            <td>6,800</td>
+                            <td>
+                              <label class="badge badge-gradient-success">ACTIVE</label>
+                            </td>
+                            <td> Jun 1, 2024 </td>
+                            <td> TB-12348 </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Personnel Task Status</h4>
+                    <div class="table-responsive">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th> S.No </th>
+                            <th> Personnel Role </th>
+                            <th> Task Type </th>
+                            <th> Count </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td> 1 </td>
+                            <td> Medical Officer </td>
+                            <td> Diagnosis Review </td>
+                            <td>
+                              <div class="progress">
+                                <div class="progress-bar bg-gradient-success" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                              </div>
+                              500
+                            </td>
+                          </tr>
+                          <tr>
+                            <td> 2 </td>
+                            <td> Field Worker </td>
+                            <td> Home Visit </td>
+                            <td>
+                              <div class="progress">
+                                <div class="progress-bar bg-gradient-primary" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                              </div>
+                              2,000
+                            </td>
+                          </tr>
+                          <tr>
+                            <td> 3 </td>
+                            <td> Lab Technician </td>
+                            <td> Test Upload </td>
+                            <td>
+                              <div class="progress">
+                                <div class="progress-bar bg-gradient-warning" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                              </div>
+                              1,000
+                            </td>
+                          </tr>
+                          <tr>
+                            <td> 4 </td>
+                            <td> Program Manager </td>
+                            <td> Escalation Review </td>
+                            <td>
+                              <div class="progress">
+                                <div class="progress-bar bg-gradient-danger" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                              </div>
+                              100
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <footer class="footer" style="padding-block: 20px; border-top: 1px solid lightgray;">
+            <div class="d-sm-flex justify-content-center justify-content-sm-center">
+              <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">© 2025 TB Health Mission Dashboard | Powered by <a
+                  target="_blank" href="https://www.uniquehire.com" style="color: blue; text-decoration: underline;">UniqueHire</a></span>
+            </div>
+          </footer>
+        </div>
+      </div>
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="/dist/assets/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script src="/dist/assets/vendors/chart.js/chart.umd.js"></script>
+    <script src="/dist/assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="/dist/assets/js/off-canvas.js"></script>
+    <script src="/dist/assets/js/misc.js"></script>
+    <script src="/dist/assets/js/settings.js"></script>
+    <script src="/dist/assets/js/todolist.js"></script>
+    <script src="/dist/assets/js/jquery.cookie.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page -->
+    <script src="/dist/assets/js/dashboard.js"></script>
+    <!-- End custom js for this page -->
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

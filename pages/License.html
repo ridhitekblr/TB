@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TB Patient Registration</title>
+    <style>
+        *,
+        *:before,
+        *:after {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fff;
+        }
+        section {
+            position: relative;
+            background-image: linear-gradient(to right, #172a74, #21a9af);
+            padding: 50px;
+            background-size: cover;
+            background-position: center;
+            object-fit: cover;
+            width: 100%;
+        }
+        
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1;
+        }
+        .page-title {
+            font-size: 32px;
+            line-height: 42px;
+            text-align: center;
+            color: #fff;
+        }
+
+        .page-para_licencetilte {
+            text-align: center;
+            color: #fff;
+            padding-block: 15px;
+        }
+        .page-para_licence {
+            text-align: center;
+            color: #fff;
+            padding-top: 10px;
+        }
+
+        form {
+            width: 100%;
+            background-image: linear-gradient(to right, #172a74, #21a9af);
+            box-shadow: 0 0 40px rgba(8, 7, 16, 0.3);
+            padding: 50px 35px;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            border-radius: 20px;
+            position: relative;
+            z-index: 2;
+            border-top: 10px solid aqua;
+        }
+        .mainform {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: flex-start;
+        }
+        .forminput_left, .forminput_right {
+            width: 40%;
+        }
+
+        input,
+        select {
+            display: block;
+            height: 60px;
+            width: 100%;
+            border-radius: 10px;
+            padding: 0 10px;
+            margin-block: 15px;
+            box-shadow: 0 0 40px rgba(8, 7, 16, 0.3);
+            font-size: 14px;
+            font-weight: 300;
+            border: none;
+            color: #fff;
+            outline: none;
+            background-color: rgba(127,127,127, 0.5) !important;
+            border-left: 2px solid greenyellow;
+        }
+
+        option {
+            background-color: #fff;
+            color: #000;
+        }
+
+        input::placeholder {
+            color: #fff;
+        }
+
+        input:focus {
+            border-color: #fff;
+            outline: none;
+        }
+
+        .buttonsubmit {
+            background: #2644bd;
+            color: #fff;
+            width: 150px;
+            margin: 0 auto;
+            height: 50px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: ease-in 0.3s !important;
+        }
+        .buttonsubmit:hover {
+            background: #21a9af;
+        }
+        .button {
+            background: #2644bd;
+            color: #fff;
+            padding: 10px 25px;
+            margin-left: auto;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            position: absolute;
+            right: 50px;
+            transition: ease-in 0.3s !important;
+        }
+        .button:hover {
+            background: #21a9af;
+            border: 1px solid #fff;
+        }
+
+        label {
+            color: #fff;
+            font-size: 14px;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .field-group {
+            margin-bottom: 15px;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 600px) {
+            form {
+                padding: 50px 10px;
+            }
+            .mainform {
+                flex-direction: column;
+            }
+            .forminput_left, .forminput_right {
+                width: 95%;
+                margin: 0 auto;
+            }
+        }
+        @media(max-width:768px) {
+            .button {
+                right: 20px !important;
+                position: relative;
+            }
+            section {
+                padding: 25px !important;
+            }
+        }
+        @media(max-width:320px) {
+            .page-title {
+                font-size: 1em !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <div class="overlay"></div>
+        <div id="main" class="largemain">
+            <form action="register.php" method="post" id="registrationForm">
+                <a href="/index.html" class="button">Home</a> 
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Seal_of_Uttarakhand.svg" alt="Emblem_of_Telangana" style="width: 100px;margin: 0 auto;">
+                <h1 class="page-title">New TB Patient Registration</h1>
+                <p class="page-para_licencetilte">Patient Information</p>
+                <div class="mainform">
+                    <div class="forminput_left">
+                        <div class="field-group">
+                            <label for="registration_type">Registration Type</label>
+                            <select name="registration_type" id="registration_type" required>
+                                <option value="" disabled selected>Select Registration Type</option>
+                                <option value="New">New</option>
+                                <option value="Transfer">Transfer</option>
+                                <option value="Follow-up">Follow-up</option>
+                            </select>
+                        </div>
+                        <div class="field-group">
+                            <label for="patient_name">Patient’s Full Name</label>
+                            <input type="text" name="patient_name" id="patient_name" placeholder="Enter Patient’s Full Name" required>
+                        </div>
+                        <div class="field-group">
+                            <label for="residential_address">Residential Address</label>
+                            <input type="text" name="residential_address" id="residential_address" placeholder="Enter Residential Address" required>
+                        </div>
+                        <div class="field-group">
+                            <label for="p_state">State</label>
+                            <select name="p_state" id="p_state" required>
+                                <option value="" disabled selected>Select State</option>
+                                <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                                <option value="Assam">Assam</option>
+                                <option value="Bihar">Bihar</option>
+                                <option value="Chhattisgarh">Chhattisgarh</option>
+                                <option value="Delhi">Delhi</option>
+                                <option value="Goa">Goa</option>
+                                <option value="Gujarat">Gujarat</option>
+                                <option value="Haryana">Haryana</option>
+                                <option value="Himachal Pradesh">Himachal Pradesh</option>
+                                <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                                <option value="Jharkhand">Jharkhand</option>
+                                <option value="Karnataka">Karnataka</option>
+                                <option value="Kerala">Kerala</option>
+                                <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                <option value="Maharashtra">Maharashtra</option>
+                                <option value="Manipur">Manipur</option>
+                                <option value="Meghalaya">Meghalaya</option>
+                                <option value="Mizoram">Mizoram</option>
+                                <option value="Nagaland">Nagaland</option>
+                                <option value="Odisha">Odisha</option>
+                                <option value="Punjab">Punjab</option>
+                                <option value="Rajasthan">Rajasthan</option>
+                                <option value="Sikkim">Sikkim</option>
+                                <option value="Tamil Nadu">Tamil Nadu</option>
+                                <option value="Telangana">Telangana</option>
+                                <option value="Tripura">Tripura</option>
+                                <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                <option value="Uttarakhand">Uttarakhand</option>
+                                <option value="West Bengal">West Bengal</option>
+                            </select>
+                        </div>
+                        <div class="field-group">
+                            <label for="guardian_name">Guardian’s Full Name (if minor)</label>
+                            <input type="text" name="guardian_name" id="guardian_name" placeholder="Enter Guardian’s Full Name" required>
+                        </div>
+                        <div class="field-group">
+                            <label for="parent_name">Father's/Mother's Name</label>
+                            <input type="text" name="parent_name" id="parent_name" placeholder="Enter Father's/Mother's Name" required>
+                        </div>
+                        <div class="field-group">
+                            <label for="dob">Date of Birth</label>
+                            <input type="date" name="dob" id="dob" placeholder="Select Date of Birth" required>
+                        </div>
+                        <div class="field-group">
+                            <label for="education_level">Education Level</label>
+                            <input type="text" name="education_level" id="education_level" placeholder="Enter Education Level" required>
+                        </div>
+                        <div class="field-group">
+                            <label for="occupation">Current Occupation</label>
+                            <input type="text" name="occupation" id="occupation" placeholder="Enter Current Occupation (if applicable)" required>
+                        </div>
+                        <div class="field-group">
+                            <label for="family_income">Family Income (INR)</label>
+                            <input type="number" name="family_income" id="family_income" placeholder="Enter Family Income" required>
+                        </div>
+                        <div class="field-group">
+                            <label for="symptom_duration">Duration of Symptoms</label>
+                            <input type="text" name="symptom_duration" id="symptom_duration" placeholder="Enter Duration in Weeks" required>
+                        </div>
+                    </div>
+                    <div class="forminput_right">
+                        <div class="field-group">
+                            <label for="phone">Mobile Number</label>
+                            <input type="tel" name="phone" id="phone" placeholder="Enter 10-digit Mobile Number" pattern="[0-9]{10}" required>
+                        </div>
+                        <div class="field-group">
+                            <label for="alt_phone">Alternate Contact Number</label>
+                            <input type="tel" name="alt_phone" id="alt_phone" placeholder="Enter Alternate 10-digit Number" pattern="[0-9]{10}">
+                        </div>
+                        <div class="field-group">
+                            <label for="email">Email ID</label>
+                            <input type="email" name="email" id="email" placeholder="Enter Email ID (optional)">
+                        </div>
+                        <div class="field-group">
+                            <label for="village">Village / Town / City</label>
+                            <input type="text" name="village" id="village" placeholder="Enter Village / Town / City" required>
+                        </div>
+                        <div class="field-group">
+                            <label for="district">District</label>
+                            <input type="text" name="district" id="district" placeholder="Enter District" required>
+                        </div>
+                        <div class="field-group">
+                            <label for="state">State</label>
+                            <select name="state" id="state" required>
+                                <option value="" disabled selected>Select Your State</option>
+                                <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                                <option value="Assam">Assam</option>
+                                <option value="Bihar">Bihar</option>
+                                <option value="Chhattisgarh">Chhattisgarh</option>
+                                <option value="Delhi">Delhi</option>
+                                <option value="Goa">Goa</option>
+                                <option value="Gujarat">Gujarat</option>
+                                <option value="Haryana">Haryana</option>
+                                <option value="Himachal Pradesh">Himachal Pradesh</option>
+                                <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                                <option value="Jharkhand">Jharkhand</option>
+                                <option value="Karnataka">Karnataka</option>
+                                <option value="Kerala">Kerala</option>
+                                <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                <option value="Maharashtra">Maharashtra</option>
+                                <option value="Manipur">Manipur</option>
+                                <option value="Meghalaya">Meghalaya</option>
+                                <option value="Mizoram">Mizoram</option>
+                                <option value="Nagaland">Nagaland</option>
+                                <option value="Odisha">Odisha</option>
+                                <option value="Punjab">Punjab</option>
+                                <option value="Rajasthan">Rajasthan</option>
+                                <option value="Sikkim">Sikkim</option>
+                                <option value="Tamil Nadu">Tamil Nadu</option>
+                                <option value="Telangana">Telangana</option>
+                                <option value="Tripura">Tripura</option>
+                                <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                <option value="Uttarakhand">Uttarakhand</option>
+                                <option value="West Bengal">West Bengal</option>
+                            </select>
+                        </div>
+                        <div class="field-group">
+                            <label for="pincode">PIN Code</label>
+                            <input type="text" name="pincode" id="pincode" pattern="[0-9]{6}" placeholder="Enter 6-digit PIN Code" required>
+                        </div>
+                        <div class="field-group">
+                            <label for="aadhaar_abha">Aadhaar Number / ABHA ID</label>
+                            <input type="text" name="aadhaar_abha" id="aadhaar_abha" placeholder="Enter 12-digit Aadhaar/ABHA ID" required>
+                        </div>
+                        <div class="field-group">
+                            <label for="tb_case_type">TB Case Type</label>
+                            <select name="tb_case_type" id="tb_case_type" required>
+                                <option value="" disabled selected>Select TB Case Type</option>
+                                <option value="Pulmonary">Pulmonary</option>
+                                <option value="Extra-Pulmonary">Extra-Pulmonary</option>
+                            </select>
+                        </div>
+                        <div class="field-group">
+                            <label for="diagnosis_date">Diagnosis Date</label>
+                            <input type="date" name="diagnosis_date" id="diagnosis_date" placeholder="Select Diagnosis Date" required>
+                        </div>
+                        <div class="field-group">
+                            <label for="dots_provider">DOTS Provider Assigned</label>
+                            <input type="text" name="dots_provider" id="dots_provider" placeholder="Enter DOTS Provider Name" required>
+                        </div>
+                    </div>
+                </div>
+                <button class="buttonsubmit" type="submit" name="submit">Register</button>
+                <p class="page-para_licence" style="padding-top:0px; font-size:14px;">By clicking submit, you confirm the accuracy of the patient's information.</p>
+                <p class="page-para_licence" style="padding-top:0px; font-size:14px;">Please note: Verification may require supporting medical and identity documents.</p>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', function (event) {
+            var form = event.target;
+            var phone = form.phone.value;
+            var altPhone = form.alt_phone.value;
+            if (!/^\d{10}$/.test(phone) || (altPhone && !/^\d{10}$/.test(altPhone))) {
+                alert('Please enter valid 10-digit phone numbers.');
+                event.preventDefault();
+            }
+            var pincode = form.pincode.value;
+            if (!/^\d{6}$/.test(pincode)) {
+                alert('Please enter a valid 6-digit PIN code.');
+                event.preventDefault();
+            }
+            var aadhaarAbha = form.aadhaar_abha.value;
+            if (!/^\d{12}$/.test(aadhaarAbha)) {
+                alert('Please enter a valid 12-digit Aadhaar or ABHA ID.');
+                event.preventDefault();
+            }
+        });
+    </script>

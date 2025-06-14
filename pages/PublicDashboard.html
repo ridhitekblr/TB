@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* Common styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        section {
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .topnav {
+            background-image: linear-gradient(195deg, #172a74 0%, #21a9af 100%);
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            padding-inline: 40px;
+            padding-block: 10px;
+            align-items: center;
+        }
+
+        .welcomeUSE {
+            display: flex;
+            flex-direction: row;
+            gap: 15px;
+        }
+
+        .welcomeUSE1 {
+            display: flex;
+            flex-direction: row;
+            gap: 15px;
+        }
+
+        .welcomeUSE1 a {
+            text-decoration: none;
+            color: #fff;
+            background-color: #172a74;
+            padding: 0px 10px;
+            border-radius: 5px;
+            transition: ease-in-out .3s;
+        }
+
+        .welcomeUSE1 a:hover {
+            background-color: #009879;
+        }
+
+        .bottomnav {
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .bottomnavContent {
+            display: flex;
+            align-items: center;
+            background-color: #fff;
+            gap: 10px;
+            padding-inline: 40px;
+            padding-top: 20px;
+        }
+
+        .logoMain {
+            margin-top: 5px;
+        }
+
+        .bottomnavContent .logoMain img {
+            max-width: 100px;
+        }
+
+        .HeadMainLeft h2,
+        p {
+            margin-block: 8px;
+        }
+        /*slection option */
+        .YearwiseSelection{
+          padding-inline: 40px;
+          padding-block: 20px;
+        }
+        #year-select{
+          padding-block: 10px;
+          padding-inline: 30px;
+          border-radius: 0px;
+          font-size: 16px;
+        }
+        /* Spinner and overlay styles */
+        .spinner-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none; /* Initially hidden */
+            justify-content: center;
+            align-items: center;
+            z-index: 9999; /* Ensure it's on top of everything */
+        }
+
+        .spinner {
+            border: 6px solid #f3f3f3;
+            border-top: 6px solid #009879;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        /* table heading */
+        .tableMainContentHeading{
+          padding-inline: 40px;
+        }
+        .tableMainContentHeading h2{
+          font-size: 1.5em;
+        }
+        /* Table values */
+        .tablesMain {
+            padding-inline: 40px;
+            padding-block: 10px;
+        }
+
+        .tablesMain p {
+            color: red;
+        }
+
+        .tableMainContent {
+            overflow: auto;
+        }
+
+        .content-table {
+            font-size: 0.8em;
+            border-radius: 5px 5px 0 0;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+            padding-inline: 40px;
+            padding-top: 10px;
+            padding-bottom: 30px;
+        }
+
+        .content-table thead tr {
+            background-color: #009879;
+            color: #ffffff;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        .content-table th,
+        .content-table td {
+            padding: 12px 15px;
+        }
+
+        .content-table tbody tr {
+            border-bottom: 1px solid #dddddd;
+        }
+
+        .content-table tbody tr:nth-of-type(even) {
+            background-color: #f3f3f3;
+        }
+
+        .content-table tbody tr:last-of-type {
+            border-bottom: 2px solid #009879;
+        }
+
+        .content-table tbody tr.active-row {
+            font-weight: bold;
+            color: #009879;
+        }
+
+        /* Styles for mobile */
+        @media(max-width: 786px) {
+            .topnav {
+                flex-direction: column;
+                align-items: center;
+                padding-inline: 10px;
+                gap: 10px;
+            }
+        }
+
+        @media(max-width: 350px) {
+            .topnav {
+                flex-direction: column;
+                align-items: center;
+                padding-inline: 10px;
+            }
+
+            .welcomeUSE {
+                gap: 5px;
+            }
+
+            .welcomeUSE1 {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .welcomeUSE1 p {
+                text-align: center;
+            }
+
+            .welcomeUSE p {
+                text-align: center;
+            }
+
+            .bottomnavContent {
+                flex-direction: column;
+                align-items: center;
+                padding: 10px;
+            }
+
+            .bottomnavContent .logoMain img {
+                max-width: 80px;
+            }
+
+            .HeadMainLeft {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <nav class="topnav">
+            <div class="welcomeUSE">
+                <p><i class="fa-solid fa-user"></i></p>
+               <a href="/pages/TBMonitoringDashboard.html" style="text-decoration: none;font-size: 20px;font-weight: 700;color: #fff;"> <p>TB Patient Monitoring Program Dashboard</p></a>
+            </div>
+            <div class="welcomeUSE1">
+                <a href="/index.html"><p>Home</p></a>
+                <p id="current-time"></p>
+            </div>
+        </nav>
+        <nav class="bottomnav">
+            <div class="bottomnavContent">
+                <div class="logoMain">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Seal_of_Uttarakhand.svg" alt="logo">
+                </div>
+                <div class="HeadMainLeft">
+                    <h2>TB Health Program Overview</h2>
+                    <p>State: Uttarakhand</p>
+                </div>
+            </div>
+        </nav>
+        <div class="YearwiseSelection">
+            <label for="year-select">Select Year Range:</label>
+            <select id="year-select" onchange="updateTable()">
+                <option value="2024-2025">2024-2025</option>
+                <option value="2023-2024">2023-2024</option>
+                <option value="2022-2023">2022-2023</option>
+                <option value="2021-2022">2021-2022</option>
+            </select>
+          </div>
+          <div class="tableMainContentHeading">
+            <h2>TB Patient Monitoring Applications</h2>
+          </div>
+        <div class="tableMainContent">
+            <table class="content-table">
+                <thead>
+                    <tr>
+                        <th>S. No.</th>
+                        <th>Service Type</th>
+                        <th>Time Limit (in Weeks)</th>
+                        <th>Total Number of Applications Received</th>
+                        <th>Total Applications Approved</th>
+                        <th>Total Applications Rejected</th>
+                        <th>Minimum Time Taken in Approval</th>
+                        <th>Average Time Taken in Approval</th>
+                        <th>Maximum Time Taken in Approval</th>
+                        <th>Median Time Taken in Approval</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                    <!-- Table content will be inserted here by using JavaScript -->
+                </tbody>
+            </table>
+        </div>
+         <!-- Spinner and overlay -->
+         <div class="spinner-overlay" id="spinner-overlay">
+          <div class="spinner"></div>
+      </div>
+        <footer class="topnav" style="justify-content: center;">
+            <div class="welcomeUSE">
+                <p>© 2025 TB Health Mission Dashboard | Powered by UniqueHire</p>
+            </div>
+        </footer>
+    </section>
+    <script>
+        // JavaScript function to show the spinner and overlay
+        function showSpinner() {
+            document.getElementById('spinner-overlay').style.display = 'flex';
+        }
+
+        // JavaScript function to hide the spinner and overlay
+        function hideSpinner() {
+            document.getElementById('spinner-overlay').style.display = 'none';
+        }
+        // JavaScript for real-time date and time
+        function updateTime() {
+            const now = new Date();
+            const options = { weekday: 'long', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', year: 'numeric' };
+            document.getElementById('current-time').textContent = now.toLocaleDateString('en-US', options);
+        }
+
+        updateTime();
+        setInterval(updateTime, 1000); // Update time every second
+
+        // Data for each year range
+        const tableData = {
+          "2024-2025": [
+            { id: 1, type: "Patient Registration", limit: 2, received: 5100, approved: 4600, rejected: 500, min: 1, avg: 3, max: 6, median: 4 },
+            { id: 2, type: "Treatment Initiation", limit: 3, received: 4900, approved: 4600, rejected: 300, min: 2, avg: 4, max: 7, median: 5 },
+            { id: 3, type: "Diagnostic Test Approval", limit: 1, received: 4100, approved: 3900, rejected: 200, min: 1, avg: 2, max: 5, median: 3 },
+            { id: 4, type: "Medication Regimen Approval", limit: 2, received: 4700, approved: 4500, rejected: 200, min: 1, avg: 3, max: 6, median: 4 },
+            { id: 5, type: "Patient Adherence Monitoring", limit: 2, received: 4600, approved: 4400, rejected: 200, min: 1, avg: 3, max: 6, median: 4 },
+            { id: 6, type: "Treatment Completion Verification", limit: 3, received: 4800, approved: 4600, rejected: 200, min: 2, avg: 4, max: 7, median: 5 }
+          ],
+          "2023-2024": [
+            { id: 1, type: "Patient Registration", limit: 2, received: 5000, approved: 4500, rejected: 500, min: 1, avg: 3, max: 6, median: 4 },
+            { id: 2, type: "Treatment Initiation", limit: 3, received: 4800, approved: 4500, rejected: 300, min: 2, avg: 4, max: 7, median: 5 },
+            { id: 3, type: "Diagnostic Test Approval", limit: 1, received: 4000, approved: 3800, rejected: 200, min: 1, avg: 2, max: 5, median: 3 },
+            { id: 4, type: "Medication Regimen Approval", limit: 2, received: 4600, approved: 4400, rejected: 200, min: 1, avg: 3, max: 6, median: 4 },
+            { id: 5, type: "Patient Adherence Monitoring", limit: 2, received: 4500, approved: 4300, rejected: 200, min: 1, avg: 3, max: 6, median: 4 },
+            { id: 6, type: "Treatment Completion Verification", limit: 3, received: 4700, approved: 4500, rejected: 200, min: 2, avg: 4, max: 7, median: 5 }
+          ],
+          "2022-2023": [
+            { id: 1, type: "Patient Registration", limit: 2, received: 4800, approved: 4300, rejected: 500, min: 1, avg: 3, max: 6, median: 4 },
+            { id: 2, type: "Treatment Initiation", limit: 3, received: 4600, approved: 4300, rejected: 300, min: 2, avg: 4, max: 7, median: 5 },
+            { id: 3, type: "Diagnostic Test Approval", limit: 1, received: 3800, approved: 3600, rejected: 200, min: 1, avg: 2, max: 5, median: 3 },
+            { id: 4, type: "Medication Regimen Approval", limit: 2, received: 4400, approved: 4200, rejected: 200, min: 1, avg: 3, max: 6, median: 4 },
+            { id: 5, type: "Patient Adherence Monitoring", limit: 2, received: 4300, approved: 4100, rejected: 200, min: 1, avg: 3, max: 6, median: 4 },
+            { id: 6, type: "Treatment Completion Verification", limit: 3, received: 4500, approved: 4300, rejected: 200, min: 2, avg: 4, max: 7, median: 5 }
+          ],
+          "2021-2022": [
+            { id: 1, type: "Patient Registration", limit: 2, received: 4600, approved: 4100, rejected: 500, min: 1, avg: 3, max: 6, median: 4 },
+            { id: 2, type: "Treatment Initiation", limit: 3, received: 4400, approved: 4100, rejected: 300, min: 2, avg: 4, max: 7, median: 5 },
+            { id: 3, type: "Diagnostic Test Approval", limit: 1, received: 3600, approved: 3400, rejected: 200, min: 1, avg: 2, max: 5, median: 3 },
+            { id: 4, type: "Medication Regimen Approval", limit: 2, received: 4200, approved: 4000, rejected: 200, min: 1, avg: 3, max: 6, median: 4 },
+            { id: 5, type: "Patient Adherence Monitoring", limit: 2, received: 4100, approved: 3900, rejected: 200, min: 1, avg: 3, max: 6, median: 4 },
+            { id: 6, type: "Treatment Completion Verification", limit: 3, received: 4300, approved: 4100, rejected: 200, min: 2, avg: 4, max: 7, median: 5 }
+          ]
+        } 
+
+        function updateTable() {
+            // Show spinner before updating table
+            showSpinner();
+
+            setTimeout(function() {
+            const yearRange = document.getElementById("year-select").value;
+            const tbody = document.getElementById("table-body");
+
+            // Clear existing rows
+            tbody.innerHTML = "";
+
+            //  selected year range data
+            tableData[yearRange].forEach(row => {
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
+                    <td>${row.id}</td>
+                    <td>${row.type}</td>
+                    <td>${row.limit}</td>
+                    <td>${row.received}</td>
+                    <td>${row.approved}</td>
+                    <td>${row.rejected}</td>
+                    <td>${row.min}</td>
+                    <td>${row.avg}</td>
+                    <td>${row.max}</td>
+                    <td>${row.median}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+             // Hide spinner after updating table
+             hideSpinner();
+            }, 2000);
+        }
+
+        // Initialize table with the default selection
+        updateTable();
+    </script>
+</body>
+</html>
